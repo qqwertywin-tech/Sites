@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08080d">
+<meta name="description" content="NOVA Vanta — portfolio of qqwerty. AI, systems, web and experimental software.">
+
+<title>NOVA Vanta — qqwerty</title>
+
+<style>
+:root{
+  --bg:#07070b;
+  --bg2:#0b0b12;
+  --card:rgba(255,255,255,.045);
+  --card2:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.09);
+  --text:#f5f5f7;
+  --muted:#92929f;
+  --purple:#7c5cff;
+  --purple2:#a78bfa;
+  --cyan:#00e5c7;
+  --pink:#ff5ca8;
+  --radius:24px;
+  --max:1180px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:
+    radial-gradient(circle at 15% 10%,rgba(124,92,255,.15),transparent 30%),
+    radial-gradient(circle at 85% 25%,rgba(0,229,199,.07),transparent 25%),
+    linear-gradient(180deg,var(--bg),var(--bg2));
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+              "Segoe UI",Roboto,Arial,sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.025;
+  background-image:
+    linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,black,transparent 75%);
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 22px;
+  background:rgba(7,7,11,.65);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav-inner{
+  width:100%;
+  max-width:var(--max);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:white;
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:-.5px;
+}
+
+.logo-mark{
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--purple),#4b2fff);
+  box-shadow:0 0 25px rgba(124,92,255,.35);
+  font-size:14px;
+}
+
+.nav-links{
+  display:flex;
+  gap:8px;
+}
+
+.nav-links a{
+  color:#aaa;
+  text-decoration:none;
+  padding:9px 13px;
+  border-radius:12px;
+  font-size:14px;
+  transition:.2s;
+}
+
+.nav-links a:hover{
+  color:white;
+  background:rgba(255,255,255,.06);
+}
+
+@media(max-width:650px){
+  .nav-links{
+    display:none;
+  }
+}
+
+/* MAIN */
+
+main{
+  max-width:var(--max);
+  margin:auto;
+  padding:0 22px;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding-top:72px;
+  position:relative;
+}
+
+.hero-content{
+  width:100%;
+  padding:90px 0;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(124,92,255,.3);
+  background:rgba(124,92,255,.08);
+  color:#c8bfff;
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:13px;
+  margin-bottom:25px;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  background:#55e878;
+  border-radius:50%;
+  box-shadow:0 0 12px #55e878;
+}
+
+h1{
+  max-width:900px;
+  font-size:clamp(55px,9vw,110px);
+  line-height:.92;
+  letter-spacing:-5px;
+  font-weight:850;
+}
+
+.gradient{
+  background:linear-gradient(
+    100deg,
+    #fff 10%,
+    #b9aaff 42%,
+    #7c5cff 70%,
+    #00e5c7
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero-description{
+  max-width:650px;
+  margin-top:30px;
+  color:var(--muted);
+  font-size:19px;
+  line-height:1.7;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:35px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:0 21px;
+  border-radius:15px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+  transition:.25s;
+}
+
+.btn-primary{
+  color:white;
+  background:linear-gradient(135deg,#7c5cff,#5c3cff);
+  box-shadow:0 12px 35px rgba(124,92,255,.25);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 45px rgba(124,92,255,.4);
+}
+
+.btn-secondary{
+  color:#ddd;
+  background:rgba(255,255,255,.055);
+  border:1px solid var(--line);
+}
+
+.btn-secondary:hover{
+  background:rgba(255,255,255,.09);
+  transform:translateY(-2px);
+}
+
+/* SECTIONS */
+
+section{
+  padding:100px 0;
+}
+
+.section-head{
+  margin-bottom:35px;
+}
+
+.eyebrow{
+  color:var(--purple2);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+.section-title{
+  font-size:clamp(32px,5vw,52px);
+  letter-spacing:-2px;
+}
+
+.section-subtitle{
+  color:var(--muted);
+  margin-top:10px;
+  line-height:1.6;
+}
+
+/* PROJECTS */
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.project{
+  position:relative;
+  overflow:hidden;
+  min-height:310px;
+  padding:28px;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.065),
+    rgba(255,255,255,.025)
+  );
+  transition:.3s;
+}
+
+.project::before{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  background:var(--glow,#7c5cff);
+  filter:blur(90px);
+  opacity:.08;
+  right:-100px;
+  top:-100px;
+}
+
+.project:hover{
+  transform:translateY(-5px);
+  border-color:rgba(124,92,255,.35);
+  background:rgba(255,255,255,.065);
+}
+
+.project-icon{
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:rgba(124,92,255,.13);
+  border:1px solid rgba(124,92,255,.2);
+  color:#bcaeff;
+  font-weight:900;
+  margin-bottom:25px;
+}
+
+.project h3{
+  font-size:25px;
+  letter-spacing:-.7px;
+}
+
+.project p{
+  color:var(--muted);
+  line-height:1.6;
+  margin-top:11px;
+  max-width:470px;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:20px;
+}
+
+.tag{
+  padding:6px 9px;
+  border-radius:8px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.07);
+  color:#aaa;
+  font-size:11px;
+}
+
+.project-link{
+  position:absolute;
+  right:25px;
+  bottom:25px;
+  color:#b9aaff;
+  font-size:13px;
+}
+
+@media(max-width:720px){
+  .projects{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    letter-spacing:-3px;
+  }
+
+  .hero-description{
+    font-size:17px;
+  }
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.stat{
+  padding:25px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+  border-radius:18px;
+}
+
+.stat-number{
+  font-size:32px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+.stat-label{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:700px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* ABOUT */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+}
+
+.about-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.035);
+  padding:30px;
+}
+
+.about-card p{
+  color:#aaa;
+  line-height:1.8;
+}
+
+.skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:24px;
+}
+
+.skill{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  border-radius:11px;
+  padding:9px 12px;
+  font-size:13px;
+}
+
+@media(max-width:750px){
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* STATUS */
+
+.status-list{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+}
+
+.status-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.status-name{
+  font-size:14px;
+}
+
+.status-state{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#aaa;
+  font-size:12px;
+}
+
+.status-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#55e878;
+  box-shadow:0 0 10px #55e878;
+}
+
+/* CONTACT */
+
+.contact{
+  text-align:center;
+  padding:120px 20px;
+  border-top:1px solid var(--line);
+}
+
+.contact h2{
+  font-size:clamp(38px,7vw,70px);
+  letter-spacing:-3px;
+}
+
+.contact p{
+  color:var(--muted);
+  max-width:550px;
+  margin:18px auto 30px;
+  line-height:1.7;
+}
+
+/* FOOTER */
+
+footer{
+  padding:30px 0 45px;
+  color:#666;
+  font-size:12px;
+  border-top:1px solid rgba(255,255,255,.05);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+footer a{
+  color:#888;
+  text-decoration:none;
+}
+
+@media(max-width:600px){
+  footer{
+    flex-direction:column;
+  }
+}
+
+/* ANIMATION */
+
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  animation:reveal .8s ease forwards;
+}
+
+.delay1{animation-delay:.1s}
+.delay2{animation-delay:.2s}
+.delay3{animation-delay:.3s}
+
+@keyframes reveal{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#">
+      <span class="logo-mark">N</span>
+      <span>qqwerty</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-content">
+
+    <div class="badge reveal">
+      <span class="dot"></span>
+      Building & experimenting
+    </div>
+
+    <h1 class="reveal delay1">
+      Software<br>
+      <span class="gradient">beyond usual.</span>
+    </h1>
+
+    <p class="hero-description reveal delay2">
+      I'm <strong>qqwerty</strong> — an independent developer
+      building experimental AI, systems, web applications,
+      games and developer tools under the NOVA Vanta ecosystem.
+    </p>
+
+    <div class="actions reveal delay3">
+      <a class="btn btn-primary" href="#projects">
+        Explore projects →
+      </a>
+
+      <a class="btn btn-secondary"
+         href="https://github.com/qqwertywin"
+         target="_blank">
+        GitHub ↗
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+  <div class="section-head">
+    <div class="eyebrow">Selected work</div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-subtitle">
+      A selection of systems, experiments and products I'm building.
+    </p>
+  </div>
+
+  <div class="projects">
+
+    <article class="project" style="--glow:#7c5cff">
+      <div class="project-icon">AI</div>
+
+      <h3>NOVA AI</h3>
+
+      <p>
+        Experimental language-model ecosystem exploring
+        associative memory, custom architecture,
+        training pipelines and model evaluation.
+      </p>
+
+      <div class="tags">
+        <span class="tag">AI</span>
+        <span class="tag">Python</span>
+        <span class="tag">Research</span>
+        <span class="tag">LLM</span>
+      </div>
+
+      <span class="project-link">Research →</span>
+    </article>
+
+
+    <article class="project" style="--glow:#00e5c7">
+      <div class="project-icon">3D</div>
+
+      <h3>NovaCraft</h3>
+
+      <p>
+        Browser-first voxel game built with JavaScript.
+        Infinite world experiments, biomes, caves,
+        mobs, crafting and multiplayer concepts.
+      </p>
+
+      <div class="tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">WebGL</span>
+        <span class="tag">3D</span>
+        <span class="tag">Game Dev</span>
+      </div>
+
+      <span class="project-link">Explore →</span>
+    </article>
+
+
+    <article class="project" style="--glow:#a78bfa">
+      <div class="project-icon">Q</div>
+
+      <h3>NOVA Quantum</h3>
+
+      <p>
+        Quantum circuit simulator experimenting with
+        tensor-network methods, QFT, Grover and Shor
+        algorithms.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Quantum</span>
+        <span class="tag">Python</span>
+        <span class="tag">MPS</span>
+        <span class="tag">Simulation</span>
+      </div>
+
+      <span class="project-link">Research →</span>
+    </article>
+
+
+    <article class="project" style="--glow:#ff5ca8">
+      <div class="project-icon">S</div>
+
+      <h3>NOVA Sentinel</h3>
+
+      <p>
+        Security-oriented platform concept for analysing
+        domains, DNS, SSL, headers and security posture.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Cybersecurity</span>
+        <span class="tag">Web</span>
+        <span class="tag">Security</span>
+        <span class="tag">SaaS</span>
+      </div>
+
+      <span class="project-link">Prototype →</span>
+    </article>
+
+
+    <article class="project" style="--glow:#7c5cff">
+      <div class="project-icon">OS</div>
+
+      <h3>NOVA OS</h3>
+
+      <p>
+        Long-term systems project exploring kernels,
+        memory management, processes, filesystems,
+        drivers and low-level software.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Systems</span>
+        <span class="tag">Kernel</span>
+        <span class="tag">C/C++</span>
+        <span class="tag">Architecture</span>
+      </div>
+
+      <span class="project-link">Systems →</span>
+    </article>
+
+
+    <article class="project" style="--glow:#00e5c7">
+      <div class="project-icon">λ</div>
+
+      <h3>NOVA Language</h3>
+
+      <p>
+        Independent programming language and compiler
+        experiments with its own syntax, semantics
+        and execution model.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Compiler</span>
+        <span class="tag">Language</span>
+        <span class="tag">Rust</span>
+        <span class="tag">Programming</span>
+      </div>
+
+      <span class="project-link">Explore →</span>
+    </article>
+
+  </div>
+</section>
+
+<!-- STATS -->
+
+<section>
+
+  <div class="section-head">
+    <div class="eyebrow">Numbers</div>
+    <h2 class="section-title">Built, tested, iterated.</h2>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="stat-number">60+</div>
+      <div class="stat-label">projects & experiments</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">AI</div>
+      <div class="stat-label">research direction</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">3D</div>
+      <div class="stat-label">web game development</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">ideas to build</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+  <div class="section-head">
+    <div class="eyebrow">About</div>
+    <h2 class="section-title">Independent developer.</h2>
+  </div>
+
+  <div class="about-grid">
+
+    <div class="about-card">
+
+      <p>
+        I build software to understand how things work —
+        from machine learning and AI systems to operating
+        systems, programming languages, games and web
+        applications.
+      </p>
+
+      <p style="margin-top:18px">
+        Most of my projects are experiments: build,
+        measure, break, improve and repeat.
+      </p>
+
+      <div class="skills">
+        <span class="skill">JavaScript</span>
+        <span class="skill">Python</span>
+        <span class="skill">Rust</span>
+        <span class="skill">C / C++</span>
+        <span class="skill">HTML / CSS</span>
+        <span class="skill">AI / ML</span>
+        <span class="skill">Systems</span>
+        <span class="skill">Cybersecurity</span>
+      </div>
+
+    </div>
+
+
+    <div class="about-card">
+
+      <div class="eyebrow">NOVA Vanta</div>
+
+      <h3 style="font-size:27px;margin-bottom:20px">
+        One ecosystem.<br>
+        Many experiments.
+      </h3>
+
+      <div class="status-list">
+
+        <div class="status-item">
+          <span class="status-name">NOVA AI</span>
+          <span class="status-state">
+            <i class="status-dot"></i> Active
+          </span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-name">NovaCraft</span>
+          <span class="status-state">
+            <i class="status-dot"></i> Active
+          </span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-name">Quantum</span>
+          <span class="status-state">
+            <i class="status-dot"></i> Research
+          </span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-name">Sentinel</span>
+          <span class="status-state">
+            <i class="status-dot"></i> Prototype
+          </span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-name">NOVA OS</span>
+          <span class="status-state">
+            <i class="status-dot"></i> Development
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact">
+
+  <div class="eyebrow">Contact</div>
+
+  <h2>
+    Let's build<br>
+    <span class="gradient">something interesting.</span>
+  </h2>
+
+  <p>
+    Open to interesting projects, experiments,
+    collaboration and conversations about technology.
+  </p>
+
+  <div class="actions" style="justify-content:center">
+
+    <a class="btn btn-primary"
+       href="https://github.com/qqwertywin"
+       target="_blank">
+      GitHub ↗
+    </a>
+
+    <a class="btn btn-secondary"
+       href="https://t.me/qqwertywin"
+       target="_blank">
+      Telegram ↗
+    </a>
+
+  </div>
+
+</section>
+
+<footer>
+  <span>© 2026 qqwerty / NOVA Vanta</span>
+  <a href="#">Back to top ↑</a>
+</footer>
+
+</main>
+
+</body>
+</html>
